@@ -26,3 +26,11 @@ tasks.withType(Test).configureEach {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
+
+// Self-contained plugin jar: merge the pure-Java common kernel into the jar so it
+// can be dropped straight into a Purpur server's plugins/ folder without extra libs.
+tasks.named('jar') {
+    from(project(':common').sourceSets.main.output)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    archiveFileName = 'more-vehicles-server-' + project.version + '.jar'
+}

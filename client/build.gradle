@@ -19,8 +19,9 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
-    // Pure-Java shared kernel; shaded into the client jar at build time.
+    // Pure-Java shared kernel; embedded into the mod jar as a jar-in-jar (JiJ).
     implementation project(':common')
+    include project(':common')
 
     testImplementation platform('org.junit:junit-bom:5.10.2')
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
