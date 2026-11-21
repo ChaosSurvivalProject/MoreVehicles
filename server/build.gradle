@@ -1,0 +1,28 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+// Compile-time API is Paper (Purpur is a drop-in fork: same Bukkit/Paper API superset).
+// Deploy the produced jar on Purpur 1.21.11; no Arclight/hybrid, no server-side Fabric.
+dependencies {
+    implementation project(':common')
+    compileOnly "io.papermc.paper:paper-api:${paper_api_version}"
+
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2'
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

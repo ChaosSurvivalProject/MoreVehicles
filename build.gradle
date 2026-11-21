@@ -1,0 +1,11 @@
+allprojects {
+    group = 'io.mv'
+    version = '0.1.0'
+
+    repositories {
+        mavenCentral()
+        maven { name = 'Paper'; url = 'https://repo.papermc.io/repository/maven-public/' }
+        maven { name = 'Purpur'; url = 'https://repo.purpurmc.org/snapshots/' }
+        maven { name = 'Fabric'; url = 'https://maven.fabricmc.net/' }
+    }
+}

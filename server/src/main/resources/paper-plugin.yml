@@ -1,0 +1,29 @@
+name: MoreVehicles
+version: '0.1.0'
+main: io.mv.server.MoreVehiclesPlugin
+api-version: '1.21.11'
+description: Server-authoritative realistic vehicles (trains + air/water/underwater 6DOF) for Purpur 1.21.11
+author: ChaosSurvivalProject
+license: MIT
+
+dependencies:
+  server:
+    name: paper
+    required: false
+
+commands:
+  mv:
+    description: MoreVehicles control
+    usage: /mv <version|couple|uncouple|rerail|dynacurve|reload|blueprint|spawn|debug|ballast>
+    permission: mv.use
+    aliases: [morevehicles]
+
+permissions:
+  mv.use:
+    description: Use basic /mv commands
+    default: true
+  mv.admin:
+    description: Change physics parameters and manage vehicles
+    default: op
+    children:
+      mv.use: true

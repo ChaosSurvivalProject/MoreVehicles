@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "morevehicles",
+  "version": "${version}",
+  "name": "More Vehicles",
+  "description": "Client presentation layer for server-authoritative realistic vehicles (trains + air/water/underwater 6DOF). Requires the MoreVehicles Purpur plugin.",
+  "authors": ["ChaosSurvivalProject"],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["io.mv.client.MoreVehiclesClient"]
+  },
+  "mixins": [
+    "morevehicles.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": ">=0.141.6"
+  },
+  "recommends": {
+    "modmenu": "*"
+  }
+}

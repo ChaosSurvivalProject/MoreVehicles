@@ -1,0 +1,33 @@
+# Functional block tags (MV-SPEC 6.3 / 11.10). Untagged blocks only contribute
+# mass, inertia, collision and appearance — "put a seat on a stone pile and it becomes a vehicle".
+# density: block-mass units (stone=2.4, wood=0.6, iron=7.8, water=1.0, air=0.0012)
+
+densities:
+  stone: 2.4
+  wood: 0.6
+  iron: 7.8
+  air: 0.0012
+
+tags:
+  mv:seat:            { main: true, eye_offset: [0, 1.2, 0] }
+  mv:thruster:        { axis: [1,0,0], t_max: 500, energy: 1.0, vector: false, differential: false }
+  mv:wing:            { area: 1.0, cl_alpha: 4.5, alpha_stall_deg: 16, ar: 6.0, incidence: 0 }
+  mv:control_surface: { type: elevator, delta_max_deg: 20, response_rate: 4.0 }
+  mv:wheel:           { mu: 0.8, suspension_k: 200, suspension_c: 20, rw: 0.4, J: 2.0 }
+  mv:bogie:           { mu: 0.7, suspension_k: 180, suspension_c: 18, rw: 0.4, J: 1.8 }
+  mv:connector:       { hook_max: 50, couple_radius: 2.0 }
+  mv:energy:          { capacity: 1000, peak_power: 1200, type: fuel }
+  mv:ballast:         { mass: 5.0 }
+  # Three-domain additions (MV-SPEC 11.10)
+  mv:buoyancy:        { volume: 2.0, compressible: true, gas_density: 0.18 }
+  mv:ballast_tank:    { capacity: 1.0, fill_rate: 0.1, fsm: 0.05 }
+  mv:hydrofoil:       { area: 0.5, cl_alpha: 4.0, sigma_crit: 1.5, incidence: 0 }
+  mv:rudder:          { delta_max_deg: 25, effectiveness: 1.0, min_immersion: 0.6 }
+  mv:propeller:       { diameter: 0.8, pitch_ratio: 0.7, medium: water }
+  mv:jet:             { t_max: 800, medium: air }          # fails in water
+  mv:waterjet:        { intake_min_alpha: 0.8, medium: water }
+  mv:keel:            { roll_damping: 2.0, leeway_drag: 0.5 }
+  mv:sail:            { area: 3.0, wind_response: 1.0 }
+
+# Blocks with mv:no_assemble tag are treated as structural boundaries.
+# Only mv:connector blocks may bridge a gap larger than one voxel.

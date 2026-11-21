@@ -1,0 +1,51 @@
+# MoreVehicles configuration (MV-SPEC 8 / 11.11). Hot-reload with /mv reload.
+# All coefficients are data-driven; no magic numbers in logic. 1 block = 1 m.
+
+physics:
+  hardcore: false            # false: gravity ~20 (vanilla feel); true: 9.81 + RK4
+  gravity_scale: 20.0
+  air_density_sea: 0.0012
+  scale_height: 900.0
+  water_density: 1.0
+  lava_density: 2.7
+  vapor_pressure: 0.00234
+  p_static: 101.325
+  surface_epsilon: 0.25      # alpha = smoothstep(d/eps)
+  slam_cap: 40.0             # max slamming impulse
+  substeps_on_entry: 4       # alpha crossing 0/1 -> 4 substeps
+  linear_damping: 0.0
+  angular_damping: 0.0
+  integrator: semi_implicit  # semi_implicit | rk4
+
+derailment:
+  mode: probabilistic        # off | probabilistic (r<1 never) | hardcore (r>=1 always)
+  flange_angle: 70.0         # delta, degrees
+  friction: 0.15             # mu wheel/rail
+  nadal_limit: 0.8           # conservative engineering: 0.5
+  gamma_cant: 2.0
+  wagner: false              # include cos(attack angle) in denominator
+
+train:
+  curve_k: 0.5               # curve resistance coefficient k_curve
+  lambda: 0.1                # a_train = kappa*g/(1+lambda(N-1))
+  wheel_radius: 0.4          # r_w, for m_eff = m + J/r_w^2
+
+coupling:
+  k: 100.0                   # spring stiffness
+  c: 10.0                    # damping
+  rest_length: 2.0           # L0
+  hook_max: 50.0             # |F_c| limit -> break + event
+
+network:
+  snapshot_hz: 15            # 10~20
+  fallback_mixin: false      # enable ONLY if Fabric S2C codec interception measured (P1)
+  proxy_aware: false         # Velocity/Bungee may rewrite channel (pitfall D)
+
+assembly:
+  max_voxels: 512
+
+# Curtius-Kniffler adhesion: dry mu=0.161+7.5/(V+44), wet mu=0.130+7.5/(V+44), V in km/h
+# Davis: R(v)=A+Bv+Cv^2 (per car; head C large, middle C small via shield)
+# Nadal: (L/V)_lim=(tanδ-μ)/(1+μtanδ); C_eq=G V^2/(127 R) mm
+# Hydrostatics: GM=KB+BM-KG, BM=I_wp/∇, GM_corr=GM-ΣFSM/Δ
+# Propeller: T=rho n^2 D^4 K_T(J), J=V_A/(nD), eta0=J K_T/(2π K_Q)
