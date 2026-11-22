@@ -30,6 +30,9 @@ runs/
 plugins/
 *.log
 
+# Local distribution staging (jars are published via GitHub Releases)
+dist/
+
 # Local secrets / tokens (NEVER commit)
 *.token
 .gh_token

@@ -1,5 +1,9 @@
 # More Vehicles（更多载具）
 
+![More Vehicles 宣传图](assets/banner.webp)
+
+> 上图为概念艺术插画（AI 生成），非游戏实机截图。
+
 Minecraft Java 1.21.11 双端载具系统：服务端权威物理 + 客户端表现增强。
 矿车互联成编组、可控动力车、基于 Nadal L/V 判据的脱轨、驾驶座一键装配整台载具，
 以及**空中 / 水面 / 水下共用一套 6DOF 方程**的真实三域物理。
@@ -12,6 +16,23 @@ Minecraft Java 1.21.11 双端载具系统：服务端权威物理 + 客户端表
 > 架构铁律：物理只在服务端算；客户端只做输入采集、预测、插值、渲染、HUD。
 > Purpur 不能加载 Fabric Mod，Fabric 客户端不承载权威逻辑；不使用 Arclight/混合端。
 > 未装 Mod 的 vanilla 客户端通过 Display 实体降级可见载具。
+
+## 三域载具概念演示
+
+> ⚠️ **以下均为概念示意图（AI 生成，带 `AI生成` 水印），并非游戏实机截图。**
+> 本项目尚未在真实 Purpur + Fabric 环境运行，因此没有真实画面。图片仅用于示意设计目标，
+> 实机验收请按 [AI-PROMPTS.md](docs/AI-PROMPTS.md) 的 `TEST-MV` / `TEST-MV-F` 分阶段进行。
+
+| 轨道 · 矿车编组 | 空中 · 6DOF 飞行器 |
+|:---:|:---:|
+| ![矿车编组概念图](assets/train.webp) | ![飞行器概念图](assets/aircraft.webp) |
+
+| 水面 · 兴波快艇 | 水下 · 跨域潜艇 |
+|:---:|:---:|
+| ![快艇概念图](assets/boat.webp) | ![潜艇概念图](assets/submarine.webp) |
+
+对应物理内核见 [MV-SPEC.md](docs/MV-SPEC.md)：轨道编组与 κ 动力系数、Nadal 脱轨判据、
+气动力/失速、水面兴波阻力、水下浮力/GM 稳性/附加质量/空化。
 
 ## 工程结构
 
